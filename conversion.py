@@ -10,11 +10,18 @@ image_height, image_width = image.shape[:2]
 
 block_size = 4
 
-output = []
+output = ""
+
+def get_emoji(grey_value):
+    step_value = 255 / len(emojis)
+    for char_index, char in enumerate(emojis):
+        if grey_value <= (char_index * step_value) + step_value:
+            return char
+
 
 for x in range(0, image_height, 4):
 
-    output_row = []
+    output_row = ""
 
     for y in range(0, image_width, 4):
 
@@ -26,8 +33,9 @@ for x in range(0, image_height, 4):
                     total_grey_value += image[x + block_x, y + block_y]
         total_grey_value = total_grey_value / (block_size**2)
 
-        output_row.append(total_grey_value)
-    output.append(output_row)
+        output_row += get_emoji(total_grey_value)
+    output += output_row
+    output += "\n"
 
 print(output)
 
