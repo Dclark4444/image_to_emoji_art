@@ -1,0 +1,1 @@
+# U+1F47B,U+1F480,U+1F47E,U+1F5A4 funny imoji list
